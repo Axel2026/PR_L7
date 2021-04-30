@@ -1,10 +1,29 @@
 import './App.css';
-import Posts from './components/posts.jsx';
+import {Route, Switch} from "react-router-dom";
+import {Redirect} from 'react-router'
+import Posts from "./components/posts";
+import Home from "./components/home";
+import NavBar from "./components/navbar";
+import NotFound from "./components/notFound";
 
 function App() {
-  return (
-    <Posts/>
-  );
+    return (
+        <div className="container-fluid">
+            <NavBar/>
+            <div className="container">
+                <div className="content">
+                    <Switch>
+                        <Route path="/posts"
+                               component={Posts}/>}
+                        />
+                        <Route path="/not-found" exact component={NotFound}/>
+                        <Route path="/" exact component={Home}/>
+                        <Redirect to="/not-found"/>
+                    </Switch>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
